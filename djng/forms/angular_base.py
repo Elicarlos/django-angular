@@ -4,13 +4,14 @@ import json
 import warnings
 
 from django.forms import forms
-from django.forms.boundfield import BoundField
+# from django.forms.boundfield import BoundField
 from django.http import QueryDict
 from django.utils.html import format_html, format_html_join, escape, conditional_escape
 from django.utils.encoding import force_text
 from django.utils.module_loading import import_string
 from django.utils.safestring import mark_safe, SafeText, SafeData
 from django.core.exceptions import ValidationError, ImproperlyConfigured
+from django.forms import BoundField as DjangoBoundField
 
 from .fields import DefaultFieldMixin
 
@@ -149,7 +150,7 @@ class NgWidgetMixin(object):
         return context
 
 
-class NgBoundField(BoundField):
+class NgBoundField(DjangoBoundField):
     @property
     def errors(self):
         """
